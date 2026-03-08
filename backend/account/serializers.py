@@ -64,20 +64,23 @@ class UserSerializer(serializers.ModelSerializer):
     #  表示用URL（未設定なら STATIC のデフォルト）
     # ----------------------------
     def get_icon_url(self, obj):
-        request = self.context.get("request")
+        request = self.context.get("request", None)
 
         # 登録済みのユーザーアイコン（ImageField）があれば、その絶対URLを返す
         if getattr(obj, "icon", None):
             try:
+                rel_url = obj.icon.url  # 例: /media/...
                 # obj.icon が存在し、ストレージにファイルがある場合のみ
-                return request.build_absolute_uri(obj.icon.url)
+                return request.build_absolute_uri(rel_url) if request else rel_url
             except Exception:
                 # 例：ファイル実体が無い等はデフォルトにフォールバック
                 pass
 
         # 未設定なら STATIC のデフォルトを返す
         # ファイルパスは backend/account/static/img/default-icon.png
-        return request.build_absolute_uri(static("img/default-icon.png"))
+        default_rel = static("img/default-icon.png")  # 例: /static/img/default-icon.png
+        return request.build_absolute_uri(default_rel) if request else default_rel
+
 
 
 # ============================
