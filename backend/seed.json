@@ -1,0 +1,228 @@
+[
+{
+  "model": "game.gamescore",
+  "pk": 1,
+  "fields": {
+    "user": 6,
+    "score": 10,
+    "created_at": "2025-12-26T11:31:08.861Z"
+  }
+},
+{
+  "model": "game.gamescore",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "score": 640,
+    "created_at": "2025-12-26T11:55:11.310Z"
+  }
+},
+{
+  "model": "game.gamescore",
+  "pk": 3,
+  "fields": {
+    "user": 6,
+    "score": 80,
+    "created_at": "2025-12-26T12:10:24.739Z"
+  }
+},
+{
+  "model": "game.gamescore",
+  "pk": 4,
+  "fields": {
+    "user": 6,
+    "score": 2010,
+    "created_at": "2025-12-26T12:31:02.858Z"
+  }
+},
+{
+  "model": "game.gamescore",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "score": 1320,
+    "created_at": "2025-12-27T17:47:27.593Z"
+  }
+},
+{
+  "model": "game.gamescore",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "score": 10810,
+    "created_at": "2025-12-29T12:59:27.118Z"
+  }
+},
+{
+  "model": "game.gamescore",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "score": 70,
+    "created_at": "2025-12-29T13:15:06.227Z"
+  }
+},
+{
+  "model": "game.gamescore",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "score": -150,
+    "created_at": "2026-01-08T08:26:19.916Z"
+  }
+},
+{
+  "model": "review.review",
+  "pk": 3,
+  "fields": {
+    "user": 6,
+    "title": "休日はファミリーも多め",
+    "body": "晴れた日曜はランナー、犬の散歩、子どもの自転車練習などで賑やか。スピードは控えめ、ベルや声かけ必須。逆に平日は驚くほど空いていて、川と自分だけの世界を楽しめます。",
+    "rating": "3.5",
+    "created_at": "2025-12-25T16:35:23.201Z",
+    "updated_at": "2026-01-04T17:11:39.696Z",
+    "is_deleted": false,
+    "deleted_at": null
+  }
+},
+{
+  "model": "review.review",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "title": "寄り道が本気で楽しい！",
+    "body": "友人とゆったりペースでサイクリング。道沿いには季節ごとに違う花畑があり、春は桜並木、秋はコスモスの絨毯が続きます。途中で見つけたカフェでアイスラテをテイクアウトして、河川敷でピクニック気分。地元のパン屋さんのカレーパンも最高。こういう寄り道の誘惑が多すぎて、予定よりゴールが3時間も遅れました。",
+    "rating": "4.5",
+    "created_at": "2025-12-25T17:00:19.957Z",
+    "updated_at": "2026-01-04T16:54:11.926Z",
+    "is_deleted": false,
+    "deleted_at": null
+  }
+},
+{
+  "model": "review.review",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "title": "test3",
+    "body": "test3",
+    "rating": "3.2",
+    "created_at": "2025-12-25T17:02:14.476Z",
+    "updated_at": "2025-12-26T09:08:35.670Z",
+    "is_deleted": true,
+    "deleted_at": "2025-12-26T09:08:35.670Z"
+  }
+},
+{
+  "model": "review.review",
+  "pk": 6,
+  "fields": {
+    "user": 6,
+    "title": "風の洗礼は覚悟",
+    "body": "片道は軽快だったのに、帰りは強烈な向かい風でペダルが重く、同じ道なのに倍以上の時間がかかりました。風が川面を波立たせるのを横目に、ひたすら前傾姿勢で耐える時間もサイクリングの思い出のひとつ。後日、風向きを調べてルートを決める大切さを学びました。",
+    "rating": "3.0",
+    "created_at": "2025-12-25T17:20:14.608Z",
+    "updated_at": "2026-01-04T17:11:05.474Z",
+    "is_deleted": false,
+    "deleted_at": null
+  }
+},
+{
+  "model": "review.review",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "title": "admin",
+    "body": "admin",
+    "rating": "4.8",
+    "created_at": "2025-12-26T09:56:46.903Z",
+    "updated_at": "2025-12-26T09:57:06.993Z",
+    "is_deleted": true,
+    "deleted_at": "2025-12-26T09:57:06.993Z"
+  }
+},
+{
+  "model": "review.review",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "title": "気持ちよすぎ！川沿いをスイスイ走るロングライド",
+    "body": "都心からアクセスしやすく、信号も少ない快適なロングライドが楽しめるコースでした。川沿いの風景は開放感があり、特に早朝や夕方の時間帯は空と水面が美しく、走っていてとても気持ちが良かったです。路面も比較的整備されていて、初心者でも安心して走れる印象。ただ、一部区間では舗装が荒れていたり、休憩ポイントが少ない場所もあったので、事前のルート確認は必須です。全体としては、自然と都市のバランスが絶妙な、走りごたえのあるサイクリングロードでした。",
+    "rating": "5.0",
+    "created_at": "2025-12-26T10:13:37.797Z",
+    "updated_at": "2025-12-26T10:13:37.798Z",
+    "is_deleted": false,
+    "deleted_at": null
+  }
+},
+{
+  "model": "review.review",
+  "pk": 9,
+  "fields": {
+    "user": 6,
+    "title": "時間を忘れる、川沿いの一本道",
+    "body": "朝7時に出発し、まだ空気がひんやりしている時間帯に川沿いを走り出しました。舗装は滑らかで、ペダルを踏むたびにタイヤがスーッと進む感覚が心地いい。両側に広がる田んぼや野鳥の群れ、遠くに見える筑波山のシルエット…。途中で菜の花が風に揺れていて、甘い香りがふわっと漂いました。気づけば20km以上進んでいて、信号待ちゼロの快適さに驚きました。",
+    "rating": "5.0",
+    "created_at": "2025-12-29T08:37:08.880Z",
+    "updated_at": "2026-01-10T15:46:58.074Z",
+    "is_deleted": false,
+    "deleted_at": null
+  }
+},
+{
+  "model": "review.review",
+  "pk": 10,
+  "fields": {
+    "user": 1,
+    "title": "一日をフルで楽しめるロングライド",
+    "body": "江戸川ルートを北上し、利根川へ繋げて合計80km。ほぼ平坦なので、ロード初心者でも完走しやすいです。道中、河川敷のグラウンドで少年野球やサッカーの試合を眺めながら休憩するのも楽しい。道の駅で補給した焼きおにぎりが絶品でした。昼過ぎは川面がキラキラ反射して、思わず立ち止まって写真を何枚も撮影。",
+    "rating": "4.2",
+    "created_at": "2025-12-29T08:38:04.445Z",
+    "updated_at": "2025-12-29T08:38:04.445Z",
+    "is_deleted": false,
+    "deleted_at": null
+  }
+},
+{
+  "model": "review.review",
+  "pk": 11,
+  "fields": {
+    "user": 1,
+    "title": "総レビュー確認",
+    "body": "総レビュー確認",
+    "rating": "2.6",
+    "created_at": "2025-12-29T11:50:06.405Z",
+    "updated_at": "2025-12-29T11:56:55.843Z",
+    "is_deleted": true,
+    "deleted_at": "2025-12-29T11:56:55.841Z"
+  }
+},
+{
+  "model": "review.review",
+  "pk": 12,
+  "fields": {
+    "user": 1,
+    "title": "1.2",
+    "body": "1.2",
+    "rating": "1.2",
+    "created_at": "2026-01-02T18:51:21.297Z",
+    "updated_at": "2026-01-02T18:54:28.009Z",
+    "is_deleted": true,
+    "deleted_at": "2026-01-02T18:54:28.009Z"
+  }
+},
+{
+  "model": "review.review",
+  "pk": 14,
+  "fields": {
+    "user": 6,
+    "title": "test",
+    "body": "test",
+    "rating": "1.0",
+    "created_at": "2026-01-10T15:52:57.406Z",
+    "updated_at": "2026-01-10T16:04:24.037Z",
+    "is_deleted": true,
+    "deleted_at": "2026-01-10T16:04:24.036Z"
+  }
+}
+]

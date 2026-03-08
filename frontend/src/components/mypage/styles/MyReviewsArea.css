@@ -1,0 +1,159 @@
+/* ===========================
+   MyReviewsArea
+=========================== */
+.my-reviews-area {
+    margin-top: 40px;
+    padding: 25px 30px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+}
+
+.my-reviews-area h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #444;
+    border-left: 4px solid #4a90e2;
+    padding-left: 10px;
+}
+
+/* レビューリスト */
+.my-reviews-area ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* レビュー1件のカード */
+.my-review-item {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: 0.25s;
+    text-align: left;
+}
+
+/* ★ 編集中のレビューをハイライト */
+.my-review-item.editing {
+    border-color: #4a90e2;
+    box-shadow: 0 4px 14px rgba(74,144,226,0.25);
+    background: #f7fbff;
+}
+
+/* ===========================
+   dl / dt / dd（縦並び）
+=========================== */
+.review-row {
+    display: block;
+    margin-bottom: 18px;
+}
+
+.review-row dt {
+    width: auto;
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: #444;
+}
+
+.review-row dd {
+    margin: 0;
+    padding: 8px 10px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* 本文 */
+.review-body {
+    margin: 0;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    color: #555;
+}
+
+/* 評価バッジ */
+/* .review-rating {
+    background: #ffd700;
+    color: #333;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+} */
+
+/* ===========================
+   編集フォーム（ReviewEditForm）
+=========================== */
+
+/* ★ 編集フォームの枠線 */
+.review-edit-form {
+    border: 4px solid #4a90e2;
+    background: #ffffff;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+
+    /* ★ 開閉アニメーション */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.35s ease;
+}
+
+/* ★ 表示状態 */
+.review-edit-form.open {
+    max-height: 500px; /* 十分大きければOK */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===========================
+   ボタン
+=========================== */
+.my-reviews-area button {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.btn-edit {
+    background: #4a90e2;
+    color: #fff;
+}
+
+.btn-edit:hover {
+    background: #3a7ac4;
+}
+
+.btn-delete {
+    background: #e24a4a;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background: #c43a3a;
+}
+
+/* ボタンの並び */
+.review-actions {
+    display: flex;
+    /* justify-content: flex-end; */
+    gap: 10px;
+    margin: 25px auto;
+}
+
+/* 空メッセージ */
+.my-reviews-area .empty {
+    color: #666;
+    font-size: 15px;
+}

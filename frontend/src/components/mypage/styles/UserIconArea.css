@@ -1,0 +1,73 @@
+/* ===========================
+   UserIconArea
+=========================== */
+.user-icon-area {
+    margin-bottom: 40px;
+    padding: 25px 30px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+}
+
+.user-icon-area h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #444;
+    border-left: 4px solid #4a90e2;
+    padding-left: 10px;
+}
+
+/* アイコン画像 */
+.user-icon-area .icon-image {
+    display: block;
+    margin: 0 auto 15px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+/* ファイル選択 */
+.user-icon-area .file-input {
+    margin: 10px 0 20px;
+    text-align: center;
+}
+
+/* ボタン共通 */
+.user-icon-area button {
+    display: inline-block;
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    margin-right: 10px;
+}
+
+/* 保存ボタン */
+.user-icon-area .btn-save {
+    background: #4a90e2;
+    color: #fff;
+}
+
+.user-icon-area .btn-save:hover {
+    background: #3a7ac4;
+}
+
+/* 削除ボタン */
+.user-icon-area .btn-delete {
+    background: #e24a4a;
+    color: #fff;
+}
+
+.user-icon-area .btn-delete:hover {
+    background: #c43a3a;
+}
+
+/* ローディング中 */
+.user-icon-area button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

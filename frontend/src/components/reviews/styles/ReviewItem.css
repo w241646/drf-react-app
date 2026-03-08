@@ -1,0 +1,31 @@
+/* src/components/reviews/styles/ReviewItem.css */
+
+.user-icon {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50%;
+  object-fit: cover !important;
+  border: 2px solid #ccc;
+}
+.review-item {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.rev-name {
+  font-weight: bold;
+}
+.rev-profile {
+  display: block;
+  font-size: 0.9em;
+  color: #666;
+}
+.title {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.note {
+  margin-top: 5px;
+  text-align: left;
+}

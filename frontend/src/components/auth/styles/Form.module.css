@@ -1,0 +1,43 @@
+/* src/components/auth/styles/Form.module.css */
+
+.logo {
+  width: 70px;
+  display: block;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin: 30px auto 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.togglePassword {
+  margin-left: 8px;
+  font-size: 0.8em;
+  border: none;
+  background: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  margin-top: 6px;
+  font-size: 0.9em;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}

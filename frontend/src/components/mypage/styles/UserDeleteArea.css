@@ -1,0 +1,44 @@
+/* ===========================
+   UserDeleteArea
+=========================== */
+.user-delete-area {
+    margin-top: 40px;
+    padding: 25px 30px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+}
+
+.user-delete-area h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #444;
+    border-left: 4px solid #e24a4a;
+    padding-left: 10px;
+}
+
+.user-delete-area p {
+    color: #d9534f;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* 削除ボタン */
+.user-delete-area .btn-delete {
+    background: #e24a4a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.user-delete-area .btn-delete:hover {
+    background: #c43a3a;
+}
+
+.user-delete-area .btn-delete:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

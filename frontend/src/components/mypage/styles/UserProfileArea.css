@@ -1,0 +1,126 @@
+/* ===========================
+   UserProfileArea
+=========================== */
+.user-profile-area {
+    margin-bottom: 40px;
+    padding: 25px 30px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+}
+
+.user-profile-area h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #444;
+    border-left: 4px solid #4a90e2;
+    padding-left: 10px;
+}
+
+.user-profile-area h4 {
+    font-size: 18px;
+    margin: 35px 0 15px;
+    padding-top: 35px;
+    border-top: 1px solid #e5e5e5;
+    color: #555;
+}
+
+/* 表示モードのテキスト */
+.user-profile-area p {
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+/* 各フォーム行の余白 */
+.user-profile-area .form-row {
+    margin-bottom: 16px;
+}
+
+/* 入力フォーム */
+.user-profile-area label {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.user-profile-area input[type="text"],
+.user-profile-area input[type="email"],
+.user-profile-area input[type="password"] {
+    width: 250px;
+    padding: 8px 10px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* ラジオボタンのグループ */
+.user-profile-area .radio-group {
+    margin-top: 10px;
+}
+
+.user-profile-area .radio-group label {
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+/* ボタン共通 */
+.user-profile-area button {
+    display: inline-block;
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+/* 保存ボタン */
+.user-profile-area .btn-save {
+    background: #4a90e2;
+    color: #fff;
+}
+
+.user-profile-area .btn-save:hover {
+    background: #3a7ac4;
+}
+
+/* キャンセルボタン */
+.user-profile-area .btn-cancel {
+    background: #aaa;
+    color: #fff;
+}
+
+.user-profile-area .btn-cancel:hover {
+    background: #888;
+}
+
+/* パスワード変更ボタン */
+.user-profile-area .btn-password {
+    background: #4a90e2;
+    color: #fff;
+}
+
+.user-profile-area .btn-password:hover {
+    background: #3a7ac4;
+}
+
+/* 表示/非表示ボタン */
+.user-profile-area .btn-toggle {
+    margin-left: 8px;
+    padding: 6px 10px;
+    background: #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.user-profile-area .btn-toggle:hover {
+    background: #ccc;
+}
+
+/* 強度表示 */
+.user-profile-area .strength {
+    margin-top: 8px;
+    font-weight: bold;
+}

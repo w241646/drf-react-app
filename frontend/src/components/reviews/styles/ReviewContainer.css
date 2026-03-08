@@ -1,0 +1,158 @@
+/* src/components/reviews/styles/ReviewContainer.css */
+
+/* ログイン必須メッセージ */
+.login-required-message {
+  padding: 15px;
+  background: #fff4e5;
+  border-left: 5px solid #ff9800;
+  border-radius: 6px;
+  margin: 20px 0;
+  font-size: 15px;
+  color: #ff9800;
+  text-align: center;
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+.login-required-message p {
+  font-weight: 600;
+}
+.login-required-message i {
+  margin-right: 8px;
+  color: #ff9800;
+}
+
+/* 投稿フォームのラッパー */
+.review-form-wrapper {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* 統計情報エリア */
+.review-stats-wrapper {
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.review-stats {
+  margin: 20px 0;
+}
+.review-stats .rev-box + p {
+  max-width: 450px;
+  color: #444;
+}
+.review-stats h4 {
+  text-align: left;
+  margin-bottom: 10px !important;
+}
+.review-stats .star {
+  font-size: 2.5em !important;
+}
+
+.rev-box {
+  display: inline-block;
+  margin: 5px 0 20px;
+}
+
+/* 星フィルタ */
+.rating-filter {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.rating-filter li {
+  margin-top: 10px;
+}
+
+/* 星フィルタ（ボタンをリンク風に） */
+.rating-filter-btn {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  margin-right: 10px;
+  cursor: pointer;
+  color: #333;
+  display: inline-block;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+.rating-filter-btn::after {
+  content: "";
+  display: block;
+  margin-top: 5px;
+  border-bottom: 1px solid #ccc;
+}
+.rating-filter-btn:hover::after {
+	border-bottom: none;
+	content: "";
+	display: block;
+	margin-top: 6px;
+}
+
+/* ★の色を常に gold に */
+.rating-filter-btn .stars {
+  color: gold;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.rating-filter-btn .count {
+  font-size: 1em;
+}
+
+/* ホバー時：背景を薄くして分かりやすく */
+.rating-filter-btn:hover {
+  background: #fff7cc;
+}
+
+/* アクティブ状態（選択中） */
+.rating-filter-btn.active {
+  background: #fff7cc;
+  border: 1px solid #e6c200;
+  font-weight: bold;
+  color: #b58900;
+}
+.rating-filter-btn.active::after {
+	border-bottom: none;
+	content: "";
+	display: block;
+	margin-top: 6px;
+}
+
+/* フィルタ解除ボタン（以前のボタン風に戻す） */
+.rating-reset-btn {
+  padding: 6px 12px;
+  background: #ddd;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  margin-top: 10px;
+}
+
+.rating-reset-btn:hover {
+  background: #ccc;
+}
+
+
+/* レビュー一覧 */
+.review-list-wrapper {
+  width: 100% !important;
+  animation: fadeIn 0.3s ease;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

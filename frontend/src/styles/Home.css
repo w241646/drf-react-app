@@ -1,0 +1,100 @@
+/* Home 専用スコープ */
+#Home .latest-reviews {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  /* background: #fafafa; */
+}
+
+#Home .latest-reviews h2 {
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  color: #92a79f;
+}
+#Home .latest-reviews h2::before {
+  content: "\f075";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  top: -1.3em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3em;
+  color: #e0e0e0;;
+}
+#Home .latest-reviews h2 span {
+  margin-top: 15px;
+}
+
+#Home .latest-review-list {
+  display: flex;
+  gap: 1em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#Home .latest-review-item {
+  flex: 1;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #fdfdfd;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#Home .latest-review-item b {
+  display: block;
+  height: 2.8em;
+  margin: 0 0 5px;
+  line-height: 1.6em;
+  font-weight: 600;
+}
+
+#Home .latest-review-item .rating {
+  font-weight: bold;
+  color: #e6a400;
+}
+#Home .latest-review-item .rating span {
+  font-size: 1.5em;
+}
+
+#Home .latest-review-item .body {
+  margin: 8px 0;
+  color: #555;
+  font-weight: 600;
+}
+
+#Home .latest-reviews .more-link {
+  margin-top: 20px;
+  text-align: right;
+}
+
+#Home .latest-reviews .detail-link {
+  display: inline-block;
+  margin-top: 5px;
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+  #Home .latest-review-list {
+    flex-direction: column;
+    gap: 1.5em; /* スマホで少し広めに */
+  }
+
+  #Home .latest-review-item {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  #Home .latest-review-item b {
+    height: auto;
+    font-size: 1.2em;
+  }
+  #Home .latest-review-item .body {
+    font-size: .9em;
+  }
+}

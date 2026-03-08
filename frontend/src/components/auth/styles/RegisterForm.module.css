@@ -1,0 +1,55 @@
+/* src/components/auth/styles/RegisterForm.module.css */
+
+/* 登録ボタンは緑にしたいなど */
+.submitButton {
+  background-color: #28a745;
+  color: #fff;
+}
+
+/* パスワード強度表示 */
+.strength {
+  margin-top: 6px;
+}
+
+.weak {
+  color: red;
+}
+
+.strong {
+  color: green;
+}
+
+/* ラジオボタンのグループ */
+.radioGroup {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+/* グループタイトル（性別・年齢） */
+.radioGroup > label {
+  font-weight: bold;
+  font-size: 0.95em;
+  color: #333;
+  display: block;
+}
+
+/* 横並び + 折り返し */
+.radioOptions {
+  margin-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+.radioOptions label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+.section {
+  margin-top: 16px;
+}

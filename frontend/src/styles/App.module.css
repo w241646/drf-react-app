@@ -1,0 +1,129 @@
+/* モーダルの背景 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+/* モーダルの中身 */
+.modalContent {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  min-width: 300px;
+  position: relative;
+  z-index: 100000;
+}
+
+/* 閉じるボタン */
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ログインボタンの固定位置 */
+.loginFloat {
+  position: fixed;
+  top: 100px;
+  right: calc((100vw - 1200px) / 2 - 20px);
+  z-index: 9999;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+/* ボタン */
+.loginButton {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signupButton {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.logoutButton {
+  margin-left: 10px;
+  padding: 6px 12px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.userWelcome {
+  margin: 10px;
+}
+.myPageButton {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+/* -------------------------
+   レスポンシブ対応
+-------------------------- */
+@media screen and (max-width: 1200px) {
+  .loginFloat {
+    right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .loginFloat {
+    right: 2%;
+    top: 95px;
+  }
+  .modalContent {
+    width: 90%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginFloat {
+    right: 2%;
+    top: 90px;
+  }
+  .loginButton,
+  .signupButton,
+  .myPageButton,
+  .logoutButton,
+  .userWelcome {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  .userWelcome {
+    display: none;
+  }
+  .loginFloat {
+    background-color: rgba(255, 255, 255, 0.65);
+  }
+}

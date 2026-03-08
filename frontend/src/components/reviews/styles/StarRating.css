@@ -1,0 +1,25 @@
+/* src/components/reviews/styles/StarRating.css */
+
+.review .star {
+  display: inline-block;
+  position: relative;
+  font-size: 20px;
+  margin-right: 2px;
+}
+.review .filled-star {
+  color: gold;
+}
+.review .empty-star {
+  color: #ccc;
+}
+.review .half-star {
+  color: #ccc; /* ベースは空の星 */
+}
+.review .half-star::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+  color: gold; /* 半分だけ金色 */
+}
