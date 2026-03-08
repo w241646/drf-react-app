@@ -146,14 +146,24 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # データベース
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        ssl_require=not DEBUG,
-    )
-}
+DATABASE_URL_ENV = os.getenv("DATABASE_URL")
+
+if DATABASE_URL_ENV:
+    # DATABASE_URL（RenderのPostgreSQLなど）がある場合はこちら
+    DATABASES = {
+        "default": dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=True,  # 本番PGはSSL必須
+        )
+    }
+else:
+    # DATABASE_URLが無いときはSQLiteを素直に使う（sslmodeを渡さない）
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 
