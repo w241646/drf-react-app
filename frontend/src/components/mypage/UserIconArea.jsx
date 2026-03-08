@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MEDIA_BASE_URL } from "../../config";
+//import { MEDIA_BASE_URL } from "../../config";
 import api from "../../api";
 import { ENDPOINTS } from "../../config";
 import "./styles/UserIconArea.css";
@@ -11,7 +11,7 @@ function UserIconArea({ user, setUser }) {
     const [loading, setLoading] = useState(false);
 
     // デフォルト画像のパス
-    const defaultIcon = MEDIA_BASE_URL + "user_icons/default-icon.png";
+    //const defaultIcon = MEDIA_BASE_URL + "user_icons/default-icon.png";
 
     // プレビュー表示
     const handleFileChange = (e) => {
@@ -72,19 +72,10 @@ function UserIconArea({ user, setUser }) {
         }
     };
 
-    const hasIcon =
-        user.icon &&
-        user.icon.trim() !== "" &&
-        !user.icon.includes("default-icon.png");
+    const currentIcon = preview ? preview : user.icon_url;
 
-    const currentIcon = preview
-        ? preview
-        : hasIcon
-        ? `${MEDIA_BASE_URL}${user.icon.replace(/^\/+/, "")}`
-        : defaultIcon;
-
-    const isDefault = !hasIcon;
-
+    //const isDefault = !hasIcon;
+    const isDefault = !preview && user?.icon_url?.includes("/static/img/default-icon.png");
 
     return (
         <div className="user-icon-area" style={{ marginBottom: "30px" }}>
