@@ -1,3 +1,4 @@
+from django.templatetags.static import static
 from rest_framework import serializers
 from .models import User
 
@@ -8,6 +9,7 @@ from .models import User
 class UserSerializer(serializers.ModelSerializer):
     # フルURLを返さない（相対パスで返す）
     icon = serializers.ImageField(use_url=False, allow_null=True, required=False) 
+    icon_url = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -16,6 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
             'username',
             'email',
             'icon',
+            'icon_url',
             'gender',
             'age'
             ]
@@ -55,6 +58,26 @@ class UserSerializer(serializers.ModelSerializer):
                 validated_data.pop('icon', None)
 
         return super().update(instance, validated_data)
+
+   
+    # ----------------------------
+    #  表示用URL（未設定なら STATIC のデフォルト）
+    # ----------------------------
+    def get_icon_url(self, obj):
+        request = self.context.get("request")
+
+        # 登録済みのユーザーアイコン（ImageField）があれば、その絶対URLを返す
+        if getattr(obj, "icon", None):
+            try:
+                # obj.icon が存在し、ストレージにファイルがある場合のみ
+                return request.build_absolute_uri(obj.icon.url)
+            except Exception:
+                # 例：ファイル実体が無い等はデフォルトにフォールバック
+                pass
+
+        # 未設定なら STATIC のデフォルトを返す
+        # ファイルパスは backend/account/static/img/default-icon.png
+        return request.build_absolute_uri(static("img/default-icon.png"))
 
 
 # ============================
