@@ -42,38 +42,3 @@ urlpatterns += [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
-
-
-
-
-
-# --- debug: DB 接続情報を確認（作業後に削除してOK） ---
-from django.http import JsonResponse
-from django.conf import settings
-from django.db import connection
-
-def dbinfo(_request):
-    s = settings.DATABASES["default"]
-    return JsonResponse({
-        "engine": s["ENGINE"],
-        "name": s.get("NAME"),
-        "host": connection.settings_dict.get("HOST"),
-        "port": connection.settings_dict.get("PORT"),
-        "user": connection.settings_dict.get("USER"),
-    })
-
-urlpatterns += [
-    path("dbinfo/", dbinfo),
-]
-
-
-# --- debug: DBのユーザー件数を確認（作業後に削除可） ---
-from account.models import User  # ← 追加
-
-def dbusers(_request):
-    sample = list(User.objects.values("id", "username", "email", "is_staff", "is_active")[:20])
-    return JsonResponse({"count": User.objects.count(), "sample": sample})
-
-urlpatterns += [
-    path("dbusers/", dbusers),  # ← 追加
-]
