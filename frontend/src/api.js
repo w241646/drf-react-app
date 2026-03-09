@@ -27,18 +27,31 @@ api.interceptors.request.use(
   error => Promise.reject(error)
 );
 
-// レスポンスで 401 → 自動リフレッシュ
+
+// レスポンスで 401 → 自動リフレッシュ + 502/504/ネットワーク時だけ 1回リトライ
 api.interceptors.response.use(
   (response) => response,
-  async error => {
+  async (error) => {
     const originalRequest = error.config;
 
-    // ネットワークエラーなどはそのまま返す
+    // 502/503/504/ネットワークは 1 回だけ自動リトライ（コールドスタート対策）
+    const status = error?.response?.status;
+    const isNetwork = !error.response;
+    const shouldWarmRetry =
+      !originalRequest?._warmRetry && (isNetwork || status === 502 || status === 503 || status === 504);
+
+    if (shouldWarmRetry) {
+      originalRequest._warmRetry = true;
+      await new Promise((r) => setTimeout(r, 1500));
+      return api.request(originalRequest);
+    }
+
+    // ネットワークエラー（上記でリトライ済み）なら終了
     if (!error.response) {
       return Promise.reject(error);
     }
 
-    // 401 かつ まだリトライしていない場合のみ処理
+    // 401 はアクセストークンをリフレッシュ
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refresh = localStorage.getItem('refresh');
@@ -48,30 +61,28 @@ api.interceptors.response.use(
       }
 
       try {
-        // refreshClient を使う（無限ループ防止）
-        const res = await refreshClient.post(ENDPOINTS.TOKEN_REFRESH, {refresh});
+        const res = await refreshClient.post(ENDPOINTS.TOKEN_REFRESH, { refresh });
 
         const newAccess = res.data.access;
-        const newRefresh = res.data.refresh; // Roatation が有効なら返ってくる
+        const newRefresh = res.data.refresh; // Rotation が有効なら返ってくる
 
-        // 新しいトークンを保存
         localStorage.setItem('access', newAccess);
         if (newRefresh) {
           localStorage.setItem('refresh', newRefresh);
         }
 
-        // 元のリクエストに新しいアクセストークンを付与して再試行
         originalRequest.headers.Authorization = `Bearer ${newAccess}`;
         return api.request(originalRequest);
       } catch (refreshError) {
-        // リフレッシュ失敗 → 強制ログアウト
         handleAuthError();
         return Promise.reject(refreshError);
       }
     }
+
     return Promise.reject(error);
   }
 );
+
 
 // 認証エラー時の共通処理
 function handleAuthError() {
