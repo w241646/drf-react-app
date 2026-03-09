@@ -7,18 +7,20 @@ export function useScrollToTop(
   shouldScroll = false,
   headerHeight = 160
 ) {
-  const isFirst = useRef(true);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if (isFirst.current) {
-      isFirst.current = false;
+    // ★ 初回レンダーは絶対にスクロールさせない
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
       return;
     }
 
+    // ★ shouldScroll が false → 何もしない
     if (!shouldScroll) return;
     if (!ref.current) return;
 
-    // DOM変化を監視して、安定したらスクロール
+    // ★ MutationObserver で DOM 更新後にスクロール
     const observer = new MutationObserver(() => {
       if (!ref.current) return;
 
@@ -29,7 +31,7 @@ export function useScrollToTop(
         behavior: "smooth",
       });
 
-      observer.disconnect(); // 一度だけ実行
+      observer.disconnect();
     });
 
     observer.observe(document.body, {
@@ -40,6 +42,50 @@ export function useScrollToTop(
     return () => observer.disconnect();
   }, deps);
 }
+
+
+
+// import { useEffect, useRef } from "react";
+
+// export function useScrollToTop(
+//   ref,
+//   deps = [],
+//   shouldScroll = false,
+//   headerHeight = 160
+// ) {
+//   const isFirst = useRef(true);
+
+//   useEffect(() => {
+//     if (isFirst.current) {
+//       isFirst.current = false;
+//       return;
+//     }
+
+//     if (!shouldScroll) return;
+//     if (!ref.current) return;
+
+//     // DOM変化を監視して、安定したらスクロール
+//     const observer = new MutationObserver(() => {
+//       if (!ref.current) return;
+
+//       const y = ref.current.getBoundingClientRect().top + window.scrollY;
+
+//       window.scrollTo({
+//         top: y - headerHeight,
+//         behavior: "smooth",
+//       });
+
+//       observer.disconnect(); // 一度だけ実行
+//     });
+
+//     observer.observe(document.body, {
+//       childList: true,
+//       subtree: true,
+//     });
+
+//     return () => observer.disconnect();
+//   }, deps);
+// }
 
 
 
