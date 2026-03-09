@@ -104,11 +104,14 @@ import RegisterForm from "./components/auth/RegisterForm";
 
 import { getMe } from "./services/accountService";
 import { logout } from "./services/authService";
+import { useLanguageBarWatcher } from "./hooks/ui/useLanguageBarWatcher";
 
 import styles from "./styles/App.module.css";
 
 
 function App() {
+  useLanguageBarWatcher();
+
   // scrollRestoration を manual に設定
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
