@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { getRanking } from "../../services/gameService";
 import { useScrollToTop } from "../../hooks/ui/useScrollToTop";
-import { MEDIA_BASE_URL } from "../../config";
+// import { MEDIA_BASE_URL } from "../../config";
 
 
 const RankingPage = forwardRef(({ embedded = false }, ref) => {
@@ -97,7 +97,13 @@ const RankingPage = forwardRef(({ embedded = false }, ref) => {
                   {(page - 1) * pageSize + index + 1} 位
                 </span>
                   
+
                 <img
+                  src={entry.user_icon_url}
+                  alt="user icon"
+                  style={styles.icon}
+                />
+                {/* <img
                   src={
                     entry.user_icon
                       ? entry.user_icon.startsWith("http")
@@ -107,7 +113,7 @@ const RankingPage = forwardRef(({ embedded = false }, ref) => {
                   }
                   alt="user icon"
                   style={styles.icon}
-                />
+                /> */}
 
                 <span style={styles.name}>{entry.user}</span>
                 <span style={styles.score}>{entry.score}</span>
