@@ -13,24 +13,30 @@ import ReviewContainer from "../components/reviews/ReviewContainer.jsx";
 import SnsShare from "../components/layout/SnsShare.jsx";
 
 
+// ------------------------------------------------------
+// ★ ページ遷移直後は TOP に強制スクロール
+// ------------------------------------------------------
 function useForceScrollTop() {
   const { pathname, hash } = useLocation();
 
   useLayoutEffect(() => {
     // hash がある場合はアンカー移動を優先するため TOP 強制を無効化
-    if (hash) return;
+    // if (hash) return;
 
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
 
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-      requestAnimationFrame(() => {
-        window.scrollTo(0, 0);
-      });
-    });
+    // requestAnimationFrame(() => {
+    //   window.scrollTo(0, 0);
+    //   requestAnimationFrame(() => {
+    //     window.scrollTo(0, 0);
+    //   });
+    // });
   }, [pathname, hash]);
 }
 
+// ------------------------------------------------------
+// ★ CyclingRoad 本体
+// ------------------------------------------------------
 export default function CyclingRoad() {
   const currentUrl = window.location.href;
 
@@ -45,11 +51,17 @@ export default function CyclingRoad() {
   useBreadcrumb();
   // useSmoothAnchorScroll();
 
+  // ------------------------------------------------------
+  // メタ情報
+  // ------------------------------------------------------
   useEffect(() => {
     setMetaTitle("日本最長の川沿いサイクリングロード");
     setMetaDescription("利根川・江戸川サイクリングロードは全長約170km。日本最長の川沿いルートで絶景と自然美を満喫。初心者からベテランまで楽しめる関東の魅力満載の快適ライド。");
   }, []);
 
+  // ------------------------------------------------------
+  // CSS 読み込み
+  // ------------------------------------------------------ 
   useEffect(() => {
     const link = document.createElement("link");
     link.rel = "stylesheet";
@@ -61,10 +73,53 @@ export default function CyclingRoad() {
     };
   }, []);
 
+  // ------------------------------------------------------
+  // Sec03 へのページ内遷移時だけ is-show を強制付与
+  // ------------------------------------------------------
   // Sec03 直リンク判定
   const { hash } = useLocation();
   const isSec03Hash = hash === "#Sec03";
 
+  useEffect(() => {
+    if (isSec03Hash) {
+      const el = document.getElementById("Sec03Article");
+      if (el) {
+        el.classList.add("is-show");
+      }
+    }
+  }, [isSec03Hash]);
+
+  // ------------------------------------------------------
+  // Sec03 専用 Observer
+  // ------------------------------------------------------
+  useLayoutEffect(() => {
+    const trigger = document.getElementById("Sec03Trigger");
+    const el = document.getElementById("Sec03Article");
+    if (!trigger || !el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            el.classList.add("is-show");
+            observer.unobserve(el);
+          }
+        });
+      },
+      {
+        threshold: 0,
+        rootMargin: "0px 0px -10% 0px"
+      }
+    );
+
+    observer.observe(trigger);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // ------------------------------------------------------
+  // アンカー移動（#Sec03 など）
+  // ------------------------------------------------------
   // アンカー移動（スクロール位置調整のみ）
   useEffect(() => {
     if (!hash) return;
@@ -118,6 +173,13 @@ export default function CyclingRoad() {
 
   return (
     <div id="Page" className="page-02">
+    <style>
+      {`
+        #Page.page-02 {
+          overflow-x: unset;
+        }
+      `}
+    </style>
 
       <nav id="breadcrumb"></nav>
 
@@ -239,13 +301,14 @@ export default function CyclingRoad() {
 
           {/* <!-- Sec03 --> */}
           <section id="Sec03" className="sec-scroll-point content03-section">
-            {/* <article className="inview fadeIn_up"> */}
-            <article className={
+            <div id="Sec03Trigger" style={{ height: "1px" }}></div>
+            <article id="Sec03Article" className="fadeIn_up">
+            {/* <article className={
               isSec03Hash
                 ? "fadeIn_up is-show"
                 : "inview fadeIn_up"                
               }
-            >
+            > */}
               <h3><span translate="no">Cyclist Review</span><b>みんなの声</b></h3>
               <figure><img src="./img/cycling_02.jpg" alt="みんなの声" className="media-cover" /></figure>
               <div className="content-block">
