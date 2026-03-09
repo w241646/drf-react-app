@@ -7,6 +7,7 @@ export const useLanguageBarWatcher = () => {
       const headerTag = document.querySelector("#header header");
       const buttonMenu = document.querySelector("#header .btn_menu");
       const floatingLink = document.querySelector(".floating_link a");
+      const loginFloat = document.querySelector("[class*='loginFloat']");
 
       const bars = document.querySelectorAll("div.skiptranslate");
       let active = false;
@@ -21,10 +22,12 @@ export const useLanguageBarWatcher = () => {
         if (headerTag) headerTag.style.top = "40px";
         if (buttonMenu) buttonMenu.style.top = "50px";
         if (floatingLink) floatingLink.style.top = "15%";
+        if (loginFloat) loginFloat.style.top = "140px";
       } else {
         if (headerTag) headerTag.style.top = "";
         if (buttonMenu) buttonMenu.style.top = "";
         if (floatingLink) floatingLink.style.top = "";
+        if (loginFloat) loginFloat.style.top = "";
       }
     }, 1000);
 
