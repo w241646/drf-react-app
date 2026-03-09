@@ -72,6 +72,9 @@ INSTALLED_APPS = [
     'review',
     'game',
     'account',
+
+    "cloudinary",
+    "cloudinary_storage",    
 ]
 
 
@@ -285,3 +288,15 @@ SIMPLE_JWT = {
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
+
+
+# =============================================================================
+# Cloudinary: MEDIA をクラウドへ保存
+# =============================================================================
+# 接続情報は環境変数 CLOUDINARY_URL を使用（Render 側に登録）
+# 例: cloudinary://<API_KEY>:<API_SECRET>@<CLOUD_NAME>
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+# Cloudinary を使うと、ImageField.url は自動で Cloudinary の絶対URLになります。
+# MEDIA_URL/MEDIA_ROOT のローカル設定は使われません（残っていても害はありません）。
+
