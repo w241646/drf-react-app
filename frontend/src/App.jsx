@@ -83,6 +83,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// ★ 追加：APIベースURLからバックエンドのオリジンを作るために参照
+import { API_BASE_URL } from "./config";
+
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Origin from "./pages/Origin";
@@ -112,6 +115,43 @@ function App() {
       window.history.scrollRestoration = "manual";
     }
   }, []);
+
+
+  // ★ 追加（1）：アプリ起動時のウォームアップ（/healthz を 1 回だけ叩く）
+  useEffect(() => {
+    // API_BASE_URL 例）https://drf-react-app.onrender.com/api/
+    const origin = API_BASE_URL.replace(/\/api\/?$/, ""); // → https://drf-react-app.onrender.com
+    (async () => {
+      try {
+        await fetch(`${origin}/healthz`, { method: "GET", cache: "no-store" });
+      } catch (_) {
+        // 無視：目的はサーバを起こすこと
+      }
+    })();
+  }, []);
+
+  // ★ 追加（3）：タブを長時間（例：5分）放置 → 復帰した瞬間に 1 回だけウォームアップ
+  useEffect(() => {
+    const origin = API_BASE_URL.replace(/\/api\/?$/, "");
+    let lastHiddenAt = 0;
+
+    const onVisibility = async () => {
+      if (document.visibilityState === "hidden") {
+        lastHiddenAt = Date.now();
+      } else {
+        // 5分以上非アクティブだったら復帰時に起こす
+        if (Date.now() - lastHiddenAt > 5 * 60 * 1000) {
+          try {
+            await fetch(`${origin}/healthz`, { method: "GET", cache: "no-store" });
+          } catch (_) {}
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
 
   // state
   const [isLoginOpen, setIsLoginOpen] = useState(false);
