@@ -25,7 +25,9 @@ class MeView(APIView):
 
     # GET /api/me/
     def get(self, request):
-        serializer = UserSerializer(request.user)
+        # serializer = UserSerializer(request.user)
+        # ★ 追加：context={"request": request}
+        serializer = UserSerializer(request.user, context={"request": request})
         return Response(serializer.data)
 
     # PATCH /api/me/
@@ -33,7 +35,8 @@ class MeView(APIView):
         serializer = UserSerializer(
             request.user,
             data=request.data,
-            partial=True
+            partial=True,
+            context={"request": request},  # ★ 追加
         )
         serializer.is_valid(raise_exception=True)
         serializer.save()
