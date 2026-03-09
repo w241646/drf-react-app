@@ -42,6 +42,14 @@ class ReviewViewSet(viewsets.ModelViewSet):
     ordering_fields = ['created_at', 'rating']
     ordering = ['-created_at']  # デフォルト：新着順
 
+
+    # ★ 追加：Serializer に request を渡す（user_icon_url を絶対URL化するのに必要）
+    def get_serializer_context(self):
+        ctx = super().get_serializer_context()
+        ctx["request"] = self.request
+        return ctx
+
+
     # ★ get_queryset をあなたの構成に合わせて拡張
     def get_queryset(self):
         queryset = Review.objects.filter(is_deleted=False)
