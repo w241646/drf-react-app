@@ -20,11 +20,19 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.http import JsonResponse  # ★ 追加
+
+
+# ★ 追加：超軽量ヘルスチェック（起動ウォームアップ用）
+def healthz(_request):
+    return JsonResponse({"ok": True})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('healthz/', healthz),            # ★ 追加（/healthz）
     path('api/', include('api.urls')),
 ]
+
 
 # 開発中のメディア配信
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
