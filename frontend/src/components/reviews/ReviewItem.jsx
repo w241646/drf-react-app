@@ -1,5 +1,5 @@
 // src/components/reviews/ReviewItem.jsx
-import { MEDIA_BASE_URL } from "../../config";
+// import { MEDIA_BASE_URL } from "../../config";
 import StarRating from "./StarRating";
 import "./styles/ReviewItem.css";
 
@@ -17,11 +17,12 @@ export default function ReviewItem({ item }) {
   const GENDER_LABEL = item.user_gender && item.user_gender !== "none" ? item.user_gender : "非公開";
 
   // アイコンURLの決定ロジック
-  const iconUrl = item.user_icon
-    ? item.user_icon.startsWith("http")
-      ? item.user_icon
-      : MEDIA_BASE_URL + item.user_icon
-    : "/img/icon_cycle.png";
+  const iconUrl = item.user_icon_url;
+  // const iconUrl = item.user_icon
+  //   ? item.user_icon.startsWith("http")
+  //     ? item.user_icon
+  //     : MEDIA_BASE_URL + item.user_icon
+  //   : "/img/icon_cycle.png";
 
   return (
     <div className="review-item">
