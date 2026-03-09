@@ -300,3 +300,10 @@ DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 # Cloudinary を使うと、ImageField.url は自動で Cloudinary の絶対URLになります。
 # MEDIA_URL/MEDIA_ROOT のローカル設定は使われません（残っていても害はありません）。
 
+# --- Cloudinary 追加（URL方式が無い環境へのフォールバック） ---
+if not os.getenv("CLOUDINARY_URL"):
+    os.environ["CLOUDINARY_URL"] = (
+        f"cloudinary://{os.getenv('CLOUDINARY_API_KEY')}:{os.getenv('CLOUDINARY_API_SECRET')}"
+        f"@{os.getenv('CLOUDINARY_CLOUD_NAME')}"
+    )
+
