@@ -15,14 +15,16 @@ export default function ReviewListView({ reload, className, ratingFilter }) {
   const [ageGroup, setAgeGroup] = useState("");
   const [gender, setGender] = useState("");
   const topRef = useRef(null);
-  const [isPaging, setIsPaging] = useState(false);
+
+  // const [isPaging, setIsPaging] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   // 初回レンダリング判定
   const isFirstRender = useRef(true);
 
-  useEffect(() => {
-    setIsPaging(false);
-  }, []);
+  // useEffect(() => {
+  //   setIsPaging(false);
+  // }, []);
 
   // APIからレビュー取得
   useEffect(() => {
@@ -37,20 +39,20 @@ export default function ReviewListView({ reload, className, ratingFilter }) {
       }
     }
     fetchData();
-  }, [reload, page, pageSize, ordering, ageGroup, gender, ratingFilter]);
+  }, [ratingFilter, reload, page, pageSize, ordering, ageGroup, gender]);
 
   // 初回はスクロール禁止
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      setIsPaging(false);
-      return; // ← 初回はスクロールしない
-    }
+  // useEffect(() => {
+  //   if (isFirstRender.current) {
+  //     isFirstRender.current = false;
+  //     setIsPaging(false);
+  //     return; // ← 初回はスクロールしない
+  //   }
 
-    if (isPaging) {
-      setIsPaging(false);
-    }
-  }, [reviews]); 
+  //   if (isPaging) {
+  //     setIsPaging(false);
+  //   }
+  // }, [reviews]); 
  
   // // ページ遷移時にページ先頭へ
   // useEffect(() => {
@@ -71,14 +73,22 @@ export default function ReviewListView({ reload, className, ratingFilter }) {
 
   // フィルター変更時にもスクロール対象にする
   useEffect(() => {
-    if (isFirstRender.current) return;
-    setIsPaging(true);
+    // if (isFirstRender.current) return;
+    if (isFirstRender.current) {
+      isFirstRender.current = false;   // ← これが重要
+      return;
+    }
+    
+    // setIsPaging(true);
+    setHasInteracted(true);
     setPage(1); // フィルタ変更時は1ページ目に戻すのが自然
   }, [ratingFilter]);
 
   // ページ切り替え時に最初へスクロール（ヘッダー固定対応）（※初回は発火しない）
-  const shouldScroll = isPaging && !isFirstRender.current;
-  useScrollToTop(topRef, [reviews, isPaging], shouldScroll);
+  const shouldScroll = hasInteracted;
+  useScrollToTop(topRef, [reviews, shouldScroll], shouldScroll);
+  // const shouldScroll = isPaging && !isFirstRender.current;
+  // useScrollToTop(topRef, [reviews, isPaging], shouldScroll);
   // useScrollToTop(topRef, [reviews]);
   // useScrollToTop(topRef, [reviews, isPaging], isPaging);
 
@@ -116,7 +126,8 @@ export default function ReviewListView({ reload, className, ratingFilter }) {
             <select
               value={pageSize}
               onChange={(e) => {
-                setIsPaging(true);
+                setHasInteracted(true);
+                // setIsPaging(true);
                 setPageSize(Number(e.target.value));
                 setPage(1);
               }}
@@ -132,8 +143,10 @@ export default function ReviewListView({ reload, className, ratingFilter }) {
             <select
               value={ordering}
               onChange={(e) => {
-                setIsPaging(true);
+                setHasInteracted(true);
+                // setIsPaging(true);
                 setOrdering(e.target.value);
+                setPage(1);
               }}
             >
               <option value="-created_at">新着順</option>
@@ -146,8 +159,10 @@ export default function ReviewListView({ reload, className, ratingFilter }) {
             <select
               value={ageGroup}
               onChange={(e) => {
-                setIsPaging(true);
+                setHasInteracted(true);
+                // setIsPaging(true);
                 setAgeGroup(e.target.value);
+                setPage(1);
               }
             }>
               <option value="">すべて</option>
@@ -164,8 +179,10 @@ export default function ReviewListView({ reload, className, ratingFilter }) {
             <select
               value={gender}
               onChange={(e) => {
-                setIsPaging(true);
+                setHasInteracted(true);
+                // setIsPaging(true);
                 setGender(e.target.value);
+                setPage(1);
               }}
             >
               <option value="">すべて</option>
@@ -195,7 +212,8 @@ export default function ReviewListView({ reload, className, ratingFilter }) {
         <button
           disabled={page <= 1}
           onClick={() => {
-            setIsPaging(true);
+            setHasInteracted(true);
+            // setIsPaging(true);
             setPage((p) => p - 1);
             }}
           >
@@ -207,7 +225,8 @@ export default function ReviewListView({ reload, className, ratingFilter }) {
         <button
           disabled={page >= totalPages}
           onClick={() => {
-            setIsPaging(true);
+            setHasInteracted(true);
+            // setIsPaging(true);
             setPage((p) => p + 1);
           }}
         >
