@@ -14,6 +14,14 @@ class GameScoreViewSet(viewsets.ModelViewSet):
     serializer_class = GameScoreSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+
+    # ★ 追加：Serializer に request を渡す（user_icon_url を絶対URL化）
+    def get_serializer_context(self):
+        ctx = super().get_serializer_context()
+        ctx["request"] = self.request
+        return ctx
+
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
