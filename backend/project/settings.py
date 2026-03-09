@@ -253,6 +253,19 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+# ==== Django 5 の STORAGES 設定（これが重要） ====
+STORAGES = {
+    # アップロード（MEDIA）は Cloudinary に保存
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    # 静的ファイルは WhiteNoise（これまでどおり）
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+
 # =============================================================================
 # Django 共通設定
 # =============================================================================
