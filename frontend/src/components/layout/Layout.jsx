@@ -4,14 +4,14 @@ import Language from "../ui/Language";
 import { Outlet } from "react-router-dom";
 
 import React from "react";
-import { useLanguageBarWatcher } from "../../hooks/ui/useLanguageBarWatcher";
+// import { useLanguageBarWatcher } from "../../hooks/ui/useLanguageBarWatcher";
 import { usePageTop } from "../../hooks/ui/usePageTop";
 import ScrollToTop from "../ui/ScrollToTop";
 
 
 export default function Layout() {
     // 各フック
-    useLanguageBarWatcher();
+    // useLanguageBarWatcher();
     usePageTop();
     
     return (
