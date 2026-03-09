@@ -65,3 +65,15 @@ def dbinfo(_request):
 urlpatterns += [
     path("dbinfo/", dbinfo),
 ]
+
+
+# --- debug: DBのユーザー件数を確認（作業後に削除可） ---
+from account.models import User  # ← 追加
+
+def dbusers(_request):
+    sample = list(User.objects.values("id", "username", "email", "is_staff", "is_active")[:20])
+    return JsonResponse({"count": User.objects.count(), "sample": sample})
+
+urlpatterns += [
+    path("dbusers/", dbusers),  # ← 追加
+]
