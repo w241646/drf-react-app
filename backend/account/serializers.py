@@ -1,4 +1,5 @@
 from django.templatetags.static import static
+from django.core.files.storage import default_storage  # ★ 追加：実体チェック用
 from rest_framework import serializers
 from .models import User
 
@@ -59,28 +60,34 @@ class UserSerializer(serializers.ModelSerializer):
 
         return super().update(instance, validated_data)
 
-   
+
     # ----------------------------
-    #  表示用URL（未設定なら STATIC のデフォルト）
+    #  表示用URL（未設定 or 既定名なら STATIC のデフォルト）
     # ----------------------------
     def get_icon_url(self, obj):
         request = self.context.get("request", None)
 
-        # 登録済みのユーザーアイコン（ImageField）があれば、その絶対URLを返す
-        if getattr(obj, "icon", None):
-            try:
-                rel_url = obj.icon.url  # 例: /media/...
-                # obj.icon が存在し、ストレージにファイルがある場合のみ
-                return request.build_absolute_uri(rel_url) if request else rel_url
-            except Exception:
-                # 例：ファイル実体が無い等はデフォルトにフォールバック
-                pass
+        icon = getattr(obj, "icon", None)
+        if icon:
+            # ImageField の保存名（例: user_icons/xxx.png / user_icons/default-icon.png）
+            name = getattr(icon, "name", "") or ""
+            # モデル側の default で埋まっている既定名なら「未設定扱い」にする
+            is_default_name = name.endswith("default-icon.png")
 
-        # 未設定なら STATIC のデフォルトを返す
-        # ファイルパスは backend/account/static/img/default-icon.png
+            if name and not is_default_name:
+                try:
+                    # ストレージ上に実体があるときだけ MEDIA のURLを返す
+                    if default_storage.exists(name):
+                        rel_url = icon.url  # 例: /media/user_icons/xxx.png
+                        return request.build_absolute_uri(rel_url) if request else rel_url
+                except Exception:
+                    # 実体が無い等は既定にフォールバック
+                    pass
+
+        # ここに来たら未設定 or 既定名：STATIC の既定画像を返す
+        # 画像実体は backend/account/static/img/default-icon.png に配置済み想定
         default_rel = static("img/default-icon.png")  # 例: /static/img/default-icon.png
         return request.build_absolute_uri(default_rel) if request else default_rel
-
 
 
 # ============================
